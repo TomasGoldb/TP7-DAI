@@ -5,7 +5,11 @@ export default function App() {
   const [textoInput, setTextoInput] = useState("");
 
   const contactar = () => {
-    alert(textoInput);
+    if(textoInput==""){
+      alert("No hay ningun texto para contactar");
+    } else{
+      alert(textoInput);
+    }
   };
 
   // Corregir la inicialización de pan usando useRef
@@ -28,21 +32,21 @@ export default function App() {
     <ImageBackground
       resizeMode='cover'
       source={require('./assets/milanga.jpg')}
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      style={{ flex: 1, justifyContent: "center"}}
     >
-      <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
         <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
         <Animated.View style={[styles.cardYo, { transform: [{ translateX: pan.x }, { translateY: pan.y }] }]} {...panResponder.panHandlers}>
           <Image style={styles.fotoPerfil} source={require('./assets/fotoperfil.jpg')} />
           <Text style={{ fontSize: 30, margin: 10, marginBottom: 0 }}>Tomás Goldberg</Text>
           <Text style={{ fontSize: 15, margin: 1 }}>Desarrollador full stack</Text> 
           <TextInput style={styles.input} keyboardType='default' onChangeText={(e) => setTextoInput(e)} />
-          <TouchableOpacity style={styles.boton} onPress={contactar}>
-            <Text>Contactar</Text>
-          </TouchableOpacity>
-          <Pressable style={({ pressed }) => (pressed ? styles.botonApretado : styles.botonPressable)}>
-            <Text>Ver perfil</Text>
-          </Pressable>
+            <TouchableOpacity style={styles.boton} onPress={contactar}>
+              <Text>Contactar</Text>
+            </TouchableOpacity>
+            <Pressable style={({ pressed }) => (pressed ? styles.botonApretado : styles.botonPressable)}>
+              <Text>Ver perfil</Text>
+            </Pressable>
         </Animated.View>
       </SafeAreaView>
     </ImageBackground>
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     width: "80%",
-    height: "50%",
+    height: 450,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -75,16 +79,23 @@ const styles = StyleSheet.create({
     backgroundColor: "lightblue",
     padding: 10,
     borderRadius: 10,
-    marginTop: 10
+    marginTop: 10,
+    width: "70%",
+    alignItems: "center"
   },
   botonPressable: {
     backgroundColor: "lightblue",
     padding: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    width: "70%",
+    alignItems: "center",
+    marginTop: 10
   },
   botonApretado: {
     backgroundColor: "#5b9cdc",
     padding: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    width: "70%",
+    alignItems: "center"
   }
 });
